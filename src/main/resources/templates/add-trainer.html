@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Trainer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+  <h1>Add New Trainer</h1>
+  <form action="/api/admin/add-trainer" method="POST">
+    <label for="trainerName">Trainer Name</label>
+    <input type="text" id="trainerName" name="trainerName" required>
+
+    <label for="trainerSpecialty">Specialty</label>
+    <input type="text" id="trainerSpecialty" name="trainerSpecialty" required>
+
+    <button type="submit">Add Trainer</button>
+  </form>
+</div>
+</body>
+</html>

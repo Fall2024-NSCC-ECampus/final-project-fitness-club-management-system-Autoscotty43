@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modify Trainer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+  <h1>Modify Trainer</h1>
+  <form action="/api/admin/modify-trainer" method="POST">
+    <label for="trainerId">Trainer ID</label>
+    <input type="number" id="trainerId" name="trainerId" required>
+
+    <label for="newSpecialty">New Specialty</label>
+    <input type="text" id="newSpecialty" name="newSpecialty" required>
+
+    <label for="newSchedule">New Schedule</label>
+    <input type="text" id="newSchedule" name="newSchedule" required>
+
+    <button type="submit">Modify Trainer</button>
+  </form>
+</div>
+</body>
+</html>
