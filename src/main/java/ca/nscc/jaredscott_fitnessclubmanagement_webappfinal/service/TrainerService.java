@@ -5,26 +5,27 @@ import ca.nscc.jaredscott_fitnessclubmanagement_webappfinal.repository.TrainerRe
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class TrainerService {
+
     @Autowired
     private TrainerRepository trainerRepository;
 
-    public Trainer getTrainerById(Long id) {
-        Trainer trainer = trainerRepository.findById(id).orElse(null);
-        if (trainer == null) {
-            throw new RuntimeException("Trainer not found with id: " + id);
-        }
-        return trainer;
+    public Trainer login(String username, String password) {
+        return trainerRepository.findByUsernameAndPassword(username, password)
+                .orElseThrow(() -> new RuntimeException("Invalid credentials"));
     }
 
-    public void addTrainer(Trainer trainer) {
+    public Trainer addTrainer(Trainer trainer) {
         trainerRepository.save(trainer);
+        return trainer;
     }
 
     public void deleteTrainer(Long id) {
         trainerRepository.deleteById(id);
+    }
+
+    public Trainer getTrainerById(Long trainerId) {
+        return null;
     }
 }

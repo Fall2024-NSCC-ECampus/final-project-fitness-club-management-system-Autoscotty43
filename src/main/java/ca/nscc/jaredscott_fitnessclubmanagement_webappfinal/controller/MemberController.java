@@ -19,6 +19,12 @@ public class MemberController {
         return memberService.addMember(member);
     }
 
+    // Member login
+    @PostMapping("/login")
+    public Member login(@RequestParam String email, @RequestParam String password) {
+        return memberService.login(email, password);
+    }
+
     // Delete a member by ID
     @DeleteMapping("/{id}")
     public void deleteMember(@PathVariable Long id) {

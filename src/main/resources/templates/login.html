@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Please sign in</title>
+  <link href="styles.css" rel="stylesheet" />
 </head>
+
 <body>
-<h1>Login</h1>
-<form action="/login" method="POST">
-  <label for="username">Username:</label>
-  <input type="text" id="username" name="username" required>
+<div class="content">
+  <form class="login-form" method="post" action="/login">
+    <h2>Please sign in</h2>
 
-  <label for="password">Password:</label>
-  <input type="password" id="password" name="password" required>
+    <p>
+      <label for="username" class="screenreader">Username</label>
+      <input type="text" id="username" name="username" placeholder="Username" required autofocus>
+    </p>
+    <p>
+      <label for="password" class="screenreader">Password</label>
+      <input type="password" id="password" name="password" placeholder="Password" required>
+    </p>
 
-  <button type="submit">Login</button>
-</form>
+    <input name="_csrf" type="hidden" value="6k9XuvkIJGABlxBjYy7EY5eG3EllAZQuCh5_reCgf7Eb0s7Ij3Y22cs9HAQs8yVaAQPwAvLi8XAGZ6cDOSxNm4KTGdMs4avx" />
+    <button type="submit" class="primary">Sign in</button>
+  </form>
+</div>
 </body>
+
 </html>

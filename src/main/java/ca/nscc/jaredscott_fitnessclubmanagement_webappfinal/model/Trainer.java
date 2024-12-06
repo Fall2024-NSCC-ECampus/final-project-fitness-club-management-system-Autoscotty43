@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 @Data
 @Entity
@@ -26,4 +27,17 @@ public class Trainer {
     @Getter
     @Column(nullable = false)
     private String specialty;
+    @Setter
+    @Getter
+    private String password;
+
+    @Setter
+    @Getter
+    @Column(nullable = false, unique = true)
+    private String username;
+
+    // Hash and set the password
+    public void setPassword(String rawPassword) {
+        this.password = BCrypt.hashpw(rawPassword, BCrypt.gensalt());
+    }
 }

@@ -14,14 +14,20 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/member/**").hasRole("MEMBER")
-                        .requestMatchers("/public/**").permitAll()
-                        .anyRequest().authenticated()
+                // Disable CSRF for API endpoints
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers("/api/**") // Disable CSRF for API requests
                 )
-                .formLogin(AbstractAuthenticationFilterConfigurer::permitAll  // Allow anyone to access the login page
-                );
+                // Configure authorization for different paths
+                .authorizeHttpRequests(authz -> authz
+                        .requestMatchers("/admin/**").hasRole("ADMIN")  // Admin access restricted to users with ADMIN role
+                        .requestMatchers("/member/**").hasRole("MEMBER")  // Member access restricted to users with MEMBER role
+                        .requestMatchers("/public/**").permitAll()  // Public access allowed for all users
+                        .requestMatchers("/api/**").permitAll()  // API endpoints open to everyone
+                        .anyRequest().authenticated()  // Other requests require authentication
+                )
+                // Disabling form login for RESTful API access
+                .formLogin(AbstractAuthenticationFilterConfigurer::permitAll); // Allow access to login page for form-based auth
 
         return http.build();
     }

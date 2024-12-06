@@ -9,15 +9,13 @@ import java.util.List;
 
 @Service
 public class MemberService {
+
     @Autowired
     private MemberRepository memberRepository;
 
-    public Member getMemberById(Long id) {
-        Member member = memberRepository.findById(id).orElse(null);
-        if (member == null) {
-            throw new RuntimeException("Member not found with id: " + id);
-        }
-        return member;
+    public Member login(String email, String password) {
+        return memberRepository.findByEmailAndPassword(email, password)
+                .orElseThrow(() -> new RuntimeException("Invalid credentials"));
     }
 
     public Member addMember(Member member) {
@@ -30,5 +28,9 @@ public class MemberService {
 
     public void deleteMember(Long id) {
         memberRepository.deleteById(id);
+    }
+
+    public Member getMemberById(Long memberId) {
+        return null;
     }
 }

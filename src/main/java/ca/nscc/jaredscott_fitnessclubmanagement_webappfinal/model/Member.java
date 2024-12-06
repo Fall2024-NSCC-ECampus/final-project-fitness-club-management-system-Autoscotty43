@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 @Data
 @Entity
@@ -26,4 +27,12 @@ public class Member {
     @Getter
     @Column(nullable = false)
     private String membershipType;
+    @Setter
+    @Getter
+    private String password;
+
+    // Hash and set the password
+    public void setPassword(String rawPassword) {
+        this.password = BCrypt.hashpw(rawPassword, BCrypt.gensalt());
+    }
 }
